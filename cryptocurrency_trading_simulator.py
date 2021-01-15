@@ -59,7 +59,7 @@ def min_max_price(regress_history_days, id):
     global min_max_list
     low_price_list = []
     high_price_list = []
-    regress_history_data_price = requests.get(api_url + 'products/'+id+'/candles?start='+start_datetime+'&end='+end_datetime+'&granularity='+str(plot1_granularity), auth=auth)
+    regress_history_data_price = requests.get(api_url + 'products/'+id+'/candles?start='+start_datetime+'&end='+end_datetime+'&granularity='+str(regress_history_days_granularity), auth=auth)
     time.sleep(1)
     if regress_history_data_price.json():
         for i in range(len(regress_history_data_price.json())):
@@ -354,7 +354,7 @@ def draw_Prediction_Simulate(buy_sell,id):
 
 def Buy_Sell_indicator_simulate(regress_history_days, id):
     global df,data,macd,aroon,rsi,cci
-    regress_history_data_price = requests.get(api_url + 'products/'+id+'/candles?start='+start_datetime+'&end='+end_datetime+'&granularity='+str(plot1_granularity), auth=auth)
+    regress_history_data_price = requests.get(api_url + 'products/'+id+'/candles?start='+start_datetime+'&end='+end_datetime+'&granularity='+str(regress_history_days_granularity), auth=auth)
     time.sleep(1)
     df = regress_history_data_price.json()
     df.reverse()
@@ -434,7 +434,7 @@ def Buy_Sell_indicator_simulate(regress_history_days, id):
 
 def Prediction_Simulate(simulate_history_days, id):
     global df2,simulation_data,macd,aroon,rsi,cci
-    regress_history_data_price = requests.get(api_url + 'products/'+id+'/candles?start='+start_datetime+'&end='+end_datetime+'&granularity='+str(plot2_granularity), auth=auth)
+    regress_history_data_price = requests.get(api_url + 'products/'+id+'/candles?start='+start_datetime+'&end='+end_datetime+'&granularity='+str(simulate_history_days_granularity), auth=auth)
     time.sleep(1)
     df2 = regress_history_data_price.json()
     print(len(df2))
