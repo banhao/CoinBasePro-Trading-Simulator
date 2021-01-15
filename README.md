@@ -126,7 +126,7 @@ Date
 
 The second plot will give you all the match point that you defined condition in the tool. 
 
-For example, my buy confition is if the candle is lower than 'BOLLINGER_LBAND' and 'CCI' is less than -100. 
+For example, my buy condition is if the candle is lower than 'BOLLINGER_LBAND' and 'CCI' is less than -100. 
 
 My sell condition is if the candle is higher than 'BOLLINGER_HBAND' and 'CCI' is more than 100 and the profit is more than 10%.    
 
