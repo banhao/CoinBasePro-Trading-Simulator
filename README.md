@@ -6,6 +6,13 @@ You need have CoinBase Pro API first, but if you have the other data soruce I th
 
 Because I'm not a expert of stock trading so I'm not familiar with these indicators. And you also can define your own trading condition and use this tool to simulate.
 
+
+Here I'll give you an example and explain it.
+
+The first plot the tool will show you the max/min price by blue down/up arrow in the predefined period. And also use red/green arrows to show you all matched opportunities that predefine in parameter "profit_rate", here it's 10%.
+
+And the tool will also output the data of the match point.
+
 <img src="/screenshot/screenshot_01.jpg">
 
 ```
@@ -116,6 +123,8 @@ Date
 Date
 2021-01-15 02:55:00           0.000013
 ```
+
+The second plot will give you all the match point that you defined condition in the tool. For example, my buy confition is if the candle is lower than 'BOLLINGER_LBAND' and 'CCI' is less than -100. My sell condition is if the candle is higher than 'BOLLINGER_HBAND' and 'CCI' is more than 100 and the profit is more than 10%.    
 
 <img src="/screenshot/screenshot_02.jpg">
 
