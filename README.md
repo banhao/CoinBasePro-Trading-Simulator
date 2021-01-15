@@ -8,6 +8,115 @@ Because I'm not a expert of stock trading so I'm not familiar with these indicat
 
 <img src="/screenshot/screenshot_01.jpg">
 
+```
+REN-BTC
+                         High          MACD     MACD_DIFF   MACD_SIGNAL      RSI7      RSI14  ARRON_DOWN  ARRON_UP      ARRON  BOLLINGER_HBAND  \
+Date
+2021-01-15 03:15:00  0.000015  2.785402e-07  1.147812e-07  1.637591e-07  87.63128  77.310638   21.428571     100.0  78.571429         0.000013
+
+                     BOLLINGER_HBAND_INDICATOR  BOLLINGER_LBAND  BOLLINGER_LBAND_INDICATOR  BOLLINGER_MAVG  BOLLINGER_PBAND  BOLLINGER_WBAND
+Date
+2021-01-15 03:15:00                        1.0         0.000011                        0.0        0.000012         1.461119        10.885924
+                         Low          MACD     MACD_DIFF   MACD_SIGNAL       RSI7      RSI14  ARRON_DOWN   ARRON_UP      ARRON  BOLLINGER_HBAND  \
+Date
+2021-01-13 21:45:00  0.00001 -9.675435e-08 -8.245229e-08 -1.430206e-08  14.151404  28.135547       100.0  28.571429 -71.428571         0.000012
+
+                     BOLLINGER_HBAND_INDICATOR  BOLLINGER_LBAND  BOLLINGER_LBAND_INDICATOR  BOLLINGER_MAVG  BOLLINGER_PBAND  BOLLINGER_WBAND
+Date
+2021-01-13 21:45:00                        0.0         0.000011                        0.0        0.000011         0.115376        11.892132
+------------------------------------------------------------------------------------------------------
+Match profit_rate Buy Opportunity 4
+Match profit_rate Sell Opportunity 4
+                          Low      High      Open     Close  Volume          MACD     MACD_DIFF   MACD_SIGNAL       RSI7      RSI14  ARRON_DOWN  \
+Date
+2021-01-12 04:30:00  0.000011  0.000011  0.000011  0.000011   21921           NaN           NaN           NaN        NaN        NaN         NaN
+2021-01-12 14:00:00  0.000010  0.000011  0.000011  0.000010    5815 -4.599820e-08 -3.391777e-09 -4.260643e-08  26.343895  36.467209       100.0
+2021-01-13 22:45:00  0.000011  0.000011  0.000011  0.000011   23689 -1.778982e-07 -8.113621e-08 -9.676197e-08  21.542520  30.235613       100.0
+2021-01-14 21:00:00  0.000012  0.000012  0.000012  0.000012   35545 -5.476099e-08 -3.931264e-08 -1.544835e-08  27.923919  37.738088       100.0
+
+                      ARRON_UP      ARRON      SMA5     SMA10     SMA60       EMA       WMA  BOLLINGER_HBAND  BOLLINGER_HBAND_INDICATOR  \
+Date
+2021-01-12 04:30:00        NaN        NaN       NaN       NaN       NaN       NaN       NaN              NaN                        0.0
+2021-01-12 14:00:00  50.000000 -50.000000  0.000011  0.000011       NaN  0.000011  0.000011              NaN                        0.0
+2021-01-13 22:45:00  21.428571 -78.571429  0.000011  0.000011  0.000011  0.000011  0.000011         0.000012                        0.0
+2021-01-14 21:00:00   7.142857 -92.857143  0.000012  0.000012  0.000012  0.000012  0.000012         0.000012                        0.0
+
+                     BOLLINGER_LBAND  BOLLINGER_LBAND_INDICATOR  BOLLINGER_MAVG  BOLLINGER_PBAND  BOLLINGER_WBAND        CCI  Min_signal_Price  \
+Date
+2021-01-12 04:30:00              NaN                        0.0             NaN              NaN              NaN        NaN               NaN
+2021-01-12 14:00:00              NaN                        0.0             NaN              NaN              NaN        NaN               NaN
+2021-01-13 22:45:00         0.000011                        0.0        0.000012         0.037007        11.197577 -26.077075               NaN
+2021-01-14 21:00:00         0.000011                        0.0        0.000012         0.124860         8.305822   9.335825               NaN
+
+                     Max_Signal_price  Buy_signal_Price  Sell_Signal_price
+Date
+2021-01-12 04:30:00               NaN          0.000011                NaN
+2021-01-12 14:00:00               NaN          0.000010                NaN
+2021-01-13 22:45:00               NaN          0.000011                NaN
+2021-01-14 21:00:00               NaN          0.000012                NaN
+                          Low      High      Open     Close  Volume          MACD     MACD_DIFF   MACD_SIGNAL       RSI7      RSI14  ARRON_DOWN  \
+Date
+2021-01-12 05:15:00  0.000011  0.000012  0.000011  0.000012   22024           NaN           NaN           NaN  95.310707        NaN         NaN
+2021-01-13 14:00:00  0.000012  0.000012  0.000012  0.000012   22977  1.619489e-07  2.815063e-08  1.337982e-07  79.580668  71.743623   28.571429
+2021-01-14 11:15:00  0.000012  0.000012  0.000012  0.000012   32035  8.064031e-08  3.320452e-08  4.743579e-08  82.881182  69.146365   57.142857
+2021-01-15 02:45:00  0.000013  0.000013  0.000013  0.000013   45110  1.951036e-07  8.218269e-08  1.129209e-07  80.029781  70.672121   35.714286
+
+                     ARRON_UP      ARRON      SMA5     SMA10     SMA60       EMA       WMA  BOLLINGER_HBAND  BOLLINGER_HBAND_INDICATOR  \
+Date
+2021-01-12 05:15:00       NaN        NaN  0.000011       NaN       NaN       NaN       NaN              NaN                        0.0
+2021-01-13 14:00:00     100.0  71.428571  0.000011  0.000011  0.000011  0.000011  0.000011         0.000011                        1.0
+2021-01-14 11:15:00     100.0  42.857143  0.000012  0.000012  0.000011  0.000012  0.000012         0.000012                        1.0
+2021-01-15 02:45:00     100.0  64.285714  0.000013  0.000012  0.000012  0.000012  0.000012         0.000013                        1.0
+
+                     BOLLINGER_LBAND  BOLLINGER_LBAND_INDICATOR  BOLLINGER_MAVG  BOLLINGER_PBAND  BOLLINGER_WBAND         CCI  Min_signal_Price  \
+Date
+2021-01-12 05:15:00              NaN                        0.0             NaN              NaN              NaN         NaN               NaN
+2021-01-13 14:00:00         0.000010                        0.0        0.000011         1.151103         9.741565         NaN               NaN
+2021-01-14 11:15:00         0.000011                        0.0        0.000011         1.120887         8.622493  130.782797               NaN
+2021-01-15 02:45:00         0.000012                        0.0        0.000012         1.313614         8.495411  222.129176               NaN
+
+                     Max_Signal_price  Buy_signal_Price  Sell_Signal_price
+Date
+2021-01-12 05:15:00               NaN               NaN           0.000012
+2021-01-13 14:00:00               NaN               NaN           0.000012
+2021-01-14 11:15:00               NaN               NaN           0.000012
+2021-01-15 02:45:00               NaN               NaN           0.000013
+------------------------------------------------------------------------------------------------------
+279
+Simulation Buy Opportunity 1
+Simulation Sell Opportunity 1
+                          Low      High      Open     Close  Volume          MACD     MACD_DIFF   MACD_SIGNAL       RSI7     RSI14  ARRON_DOWN  \
+Date
+2021-01-14 21:15:00  0.000012  0.000012  0.000012  0.000012    5212 -6.494159e-08 -3.909805e-08 -2.584354e-08  34.739297  39.24143   92.857143
+
+                      ARRON_UP      ARRON      SMA5     SMA10     SMA60       EMA       WMA  BOLLINGER_HBAND  BOLLINGER_HBAND_INDICATOR  \
+Date
+2021-01-14 21:15:00  57.142857 -35.714286  0.000012  0.000012  0.000012  0.000012  0.000012         0.000012                        0.0
+
+                     BOLLINGER_LBAND  BOLLINGER_LBAND_INDICATOR  BOLLINGER_MAVG  BOLLINGER_PBAND  BOLLINGER_WBAND         CCI  Buy_signal_Price  \
+Date
+2021-01-14 21:15:00         0.000012                        1.0        0.000012        -0.075968         4.664584 -134.755855          0.000012
+
+                     Sell_Signal_price
+Date
+2021-01-14 21:15:00                NaN
+                          Low      High      Open     Close  Volume          MACD     MACD_DIFF   MACD_SIGNAL       RSI7      RSI14  ARRON_DOWN  \
+Date
+2021-01-15 02:55:00  0.000013  0.000013  0.000013  0.000013   13875  1.717742e-07  3.410695e-08  1.376673e-07  82.091588  73.814921    7.142857
+
+                     ARRON_UP      ARRON      SMA5     SMA10     SMA60       EMA       WMA  BOLLINGER_HBAND  BOLLINGER_HBAND_INDICATOR  \
+Date
+2021-01-15 02:55:00     100.0  92.857143  0.000013  0.000013  0.000012  0.000013  0.000013         0.000013                        1.0
+
+                     BOLLINGER_LBAND  BOLLINGER_LBAND_INDICATOR  BOLLINGER_MAVG  BOLLINGER_PBAND  BOLLINGER_WBAND         CCI  Buy_signal_Price  \
+Date
+2021-01-15 02:55:00         0.000012                        0.0        0.000012         1.185002         8.805261  295.221026               NaN
+
+                     Sell_Signal_price
+Date
+2021-01-15 02:55:00           0.000013
+```
+
 <img src="/screenshot/screenshot_02.jpg">
 
 
