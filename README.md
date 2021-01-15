@@ -132,6 +132,7 @@ My sell condition is if the candle is higher than 'BOLLINGER_HBAND' and 'CCI' is
 
 <img src="/screenshot/screenshot_02.jpg">
 
+Note: Ypu can use the different period days and granularity for the first plot and second plot, but remember the data number return from the API mush be less than 300.
 
 variable.py is used to load paraments/variables and I also remained some paraments/variables for automatice trading tools to share one variable file (Automatic trading tool is still in testing)
 
