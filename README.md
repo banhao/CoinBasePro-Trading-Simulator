@@ -159,5 +159,8 @@ exclude_currency = []       #remained for trading tool
 include_currency = []       #remained for trading tool
 ```
 
+<b>
 Next version I'd like to have a configure file that can define different buy and sell condition for each crypto currency.
+
 If you have any idea want to add in the tools you can send me an email and let me know.
+</b>
