@@ -158,3 +158,6 @@ low_price_percent = 0.90    #remained for trading tool
 exclude_currency = []       #remained for trading tool
 include_currency = []       #remained for trading tool
 ```
+
+Next version I'd like to have a configure file that can define different buy and sell condition for each crypto currency.
+If you have any idea want to add in the tools you can send me an email and let me know.
