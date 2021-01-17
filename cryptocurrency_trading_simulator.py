@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 # Author: banhao@gmail.com
-# Version: 1.0
-# Issue Date: Jan 14, 2021
-# Release Note: First Version
+# Version: 1.1
+# Issue Date: Jan 16, 2021
+# Release Note: Fix "GNT-USDC" CCI data empty cause plot error
 
 
 import json, hmac, hashlib, time, requests, base64, collections
@@ -224,7 +224,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(macd['MACD_SIGNAL'],panel=3,color='blue',secondary_y=True),
             mpf.make_addplot(aroon, panel=4, ylabel='AROON'), mpf.make_addplot(rsi['RSI7'], panel=5, ylabel='RSI',color = 'black'), mpf.make_addplot(rsi['RSI14'], panel=5, ylabel='RSI',color = 'red')
         ]
-        ymin = df.loc[df['Low'].idxmin()]['Low']*0.90
+        ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
         mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) != 0:
@@ -241,7 +241,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(macd['MACD_SIGNAL'],panel=3,color='blue',secondary_y=True),
             mpf.make_addplot(aroon, panel=4, ylabel='AROON'), mpf.make_addplot(rsi['RSI7'], panel=5, ylabel='RSI',color = 'black'), mpf.make_addplot(rsi['RSI14'], panel=5, ylabel='RSI',color = 'red')
         ]
-        ymin = df.loc[df['Low'].idxmin()]['Low']*0.90
+        ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
         mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) == 0:
@@ -258,7 +258,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(macd['MACD_SIGNAL'],panel=3,color='blue',secondary_y=True),
             mpf.make_addplot(aroon, panel=4, ylabel='AROON'), mpf.make_addplot(rsi['RSI7'], panel=5, ylabel='RSI',color = 'black'), mpf.make_addplot(rsi['RSI14'], panel=5, ylabel='RSI',color = 'red')
         ]
-        ymin = df.loc[df['Low'].idxmin()]['Low']*0.90
+        ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
         mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
     else:
@@ -275,7 +275,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(macd['MACD_SIGNAL'],panel=3,color='blue',secondary_y=True),
             mpf.make_addplot(aroon, panel=4, ylabel='AROON'), mpf.make_addplot(rsi['RSI7'], panel=5, ylabel='RSI',color = 'black'), mpf.make_addplot(rsi['RSI14'], panel=5, ylabel='RSI',color = 'red')
         ]
-        ymin = df.loc[df['Low'].idxmin()]['Low']*0.90
+        ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
         mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
 
@@ -295,7 +295,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             mpf.make_addplot(macd['MACD_SIGNAL'],panel=3,color='blue',secondary_y=True),
             mpf.make_addplot(aroon, panel=4, ylabel='AROON'), mpf.make_addplot(rsi['RSI7'], panel=5, ylabel='RSI',color = 'black'), mpf.make_addplot(rsi['RSI14'], panel=5, ylabel='RSI',color = 'red')
         ]
-        ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.90
+        ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.95
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
         mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) != 0:
@@ -312,7 +312,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             mpf.make_addplot(macd['MACD_SIGNAL'],panel=3,color='blue',secondary_y=True),
             mpf.make_addplot(aroon, panel=4, ylabel='AROON'), mpf.make_addplot(rsi['RSI7'], panel=5, ylabel='RSI',color = 'black'), mpf.make_addplot(rsi['RSI14'], panel=5, ylabel='RSI',color = 'red')
         ]
-        ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.90
+        ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.95
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
         mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) == 0:
@@ -329,7 +329,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             mpf.make_addplot(macd['MACD_SIGNAL'],panel=3,color='blue',secondary_y=True),
             mpf.make_addplot(aroon, panel=4, ylabel='AROON'), mpf.make_addplot(rsi['RSI7'], panel=5, ylabel='RSI',color = 'black'), mpf.make_addplot(rsi['RSI14'], panel=5, ylabel='RSI',color = 'red')
         ]
-        ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.90
+        ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.95
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
         mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
     else:
@@ -349,7 +349,6 @@ def draw_Prediction_Simulate(buy_sell,id):
         ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.90
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
         mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
-    
 
 
 def Buy_Sell_indicator_simulate(regress_history_days, id):
@@ -444,7 +443,6 @@ def Prediction_Simulate(simulate_history_days, id):
     df2['Date'] = pd.to_datetime(df2['Date'], unit='s')
     df2 = df2.set_index('Date')
     df2 = dropna(df2)
-    #indicator_ADI = ta.volume.AccDistIndexIndicator(df2['High'], df2['Low'], df2['Close'], df2['Volume'], fillna = False)
     indicator_MACD = ta.trend.MACD(df2['Close'], window_slow = 26, window_fast = 12, window_sign = 9, fillna = False)
     indicator_RSI7 = ta.momentum.RSIIndicator(df2['Close'], window=7, fillna=False)
     indicator_RSI14 = ta.momentum.RSIIndicator(df2['Close'], window=14, fillna=False)
@@ -456,7 +454,6 @@ def Prediction_Simulate(simulate_history_days, id):
     indicator_WMA = ta.trend.WMAIndicator(df2['Close'], window=14, fillna=False)
     indicator_BOLLINGER = ta.volatility.BollingerBands(df2['Close'], window=55,window_dev=2,fillna=False)
     indicator_CCI = ta.trend.CCIIndicator(df2['High'], df2['Low'], df2['Close'], window=144, constant=0.015, fillna=False)
-    #indicator_PSAR = ta.trend.PSARIndicator(df2['High'], df2['Low'], df2['Close'], step=0.02, max_step=0.2, fillna=False)
     simulation_data = pd.DataFrame()
     simulation_data = df2
     simulation_data['MACD'] = indicator_MACD.macd()
@@ -501,7 +498,17 @@ def Prediction_Simulate(simulate_history_days, id):
     print(simulation_data[simulation_data['Buy_signal_Price'].notnull()])
     print(simulation_data[simulation_data['Sell_Signal_price'].notnull()])
     print('======================================================================================================')
-    draw_Prediction_Simulate(buy_sell,id)
+    if np.count_nonzero(~np.isnan(cci['CCI'])) == 0:
+    
+        print("CCI is empty, skip the plot")
+    elif np.count_nonzero(~np.isnan(macd['MACD'])) == 0 or np.count_nonzero(~np.isnan(macd['MACD_DIFF'])) == 0 or np.count_nonzero(~np.isnan(macd['MACD_SIGNAL'])) == 0:
+        print("MACD is empty, skip the plot")
+    elif np.count_nonzero(~np.isnan(aroon['ARRON_DOWN'])) == 0 or np.count_nonzero(~np.isnan(aroon['ARRON_UP'])) == 0 or np.count_nonzero(~np.isnan(aroon['ARRON'])) == 0:
+        print("AROON is empty, skip the plot")
+    elif np.count_nonzero(~np.isnan(rsi['RSI7'])) == 0 or np.count_nonzero(~np.isnan(rsi['RSI14'])) == 0 :
+        print("RSI is empty")
+    else:
+        draw_Prediction_Simulate(buy_sell,id)
 
 
 api_url = 'https://api.pro.coinbase.com/'
