@@ -9,7 +9,6 @@ simulate_history_days_granularity = 300 #{60, 300, 900, 3600, 21600, 86400}
 seconds_UTC2local = -25200
 profit_rate = 1.10
 seconds_cancel_order = 60
-days_history_data = 3
 BTC_lower_limit = 100
 USDC_lower_limit = 100
 first_buy_percent = 0.10
