@@ -173,9 +173,9 @@ I'm still working on the development of the bot trade tool, so you can have the 
 
 Note: The donation I will see it as a kind of encourage of my work. It's not like selling products so the bot trade tool is not guarented to earn money and I am also not responsible for any monsy loss which caused by software bugs. If you sent the money to me that means you agree with all above conditions. 
   
-https://www.paypal.com/paypalme/HAOBAN99/USD3.99
+https://www.paypal.com/paypalme/HAOBAN99/USD8.99
 
-https://www.paypal.com/paypalme/HAOBAN99/CAD4.99
+https://www.paypal.com/paypalme/HAOBAN99/CAD10.99
 
 </b>
 
