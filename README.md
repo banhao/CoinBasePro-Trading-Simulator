@@ -9,7 +9,7 @@ Because I'm not a expert of stock trading so I'm not familiar with these indicat
 
 Here I'll give you an example and explain it.
 
-The first plot the tool will show you the max/min price by blue down/up arrow in the predefined period. And also use red/green arrows to show you all matched opportunities that predefine in parameter "profit_rate", here it's 10%.
+The first plot will show you the max/min price by blue down/up arrow in the predefined period. And also use red/green arrows to show you all matched opportunities that predefine in parameter "profit_rate", here it's 10%.
 
 And the tool will also output the data of the match point.
 
@@ -165,7 +165,7 @@ Next version I'd like to have a configure file that can define different buy and
 If you have any idea want to add in the tools you can send me an email and let me know.
 </b>
 
-<b>===========================================================================================</b>
+<b>=========================================================================</b>
 
 <b>
 If you want to try the bot tool for trading the cryptocurrency automatically, use the following link to donate me USD8.99/CAD10.99 and input your email address in "Add a note", so I'll send you the bot trade tool by email and help you to setup the trading policy. 
