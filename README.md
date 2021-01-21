@@ -164,3 +164,20 @@ Next version I'd like to have a configure file that can define different buy and
 
 If you have any idea want to add in the tools you can send me an email and let me know.
 </b>
+
+<b>============================================================================================================================================</b>
+<b>
+If you want to try the bot tool for trading the cryptocurrency automatically, use the following link to donate me USD8.99/CAD10.99 and input your email address in "Add a note", so I'll send you the bot trade tool by email and help you to setup the trading policy. 
+  
+I'm still working on the development of the bot trade tool, so you can have the updates when I release the new version. 
+
+Note: The donation I will see it as a kind of encourage of my work. It's not like selling products so the bot trade tool is not guarented to earn money and I am also not responsible for any monsy loss which caused by software bugs. If you sent the money to me that means you agree with all above conditions. 
+  
+https://www.paypal.com/paypalme/HAOBAN99/USD3.99
+
+https://www.paypal.com/paypalme/HAOBAN99/CAD4.99
+
+</b>
+
+Here is my 90 days trade history.
+<img src="/screenshot/trading history.jpg">
