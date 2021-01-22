@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 # Author: banhao@gmail.com
-# Version: 1.1
-# Issue Date: Jan 16, 2021
-# Release Note: Fix "GNT-USDC" CCI data empty cause plot error
+# Version: 1.2
+# Issue Date: Jan 21, 2021
+# Release Note: Fix CCI,MACD, AROON, RSI data empty cause plot error
 
 
 import json, hmac, hashlib, time, requests, base64, collections
@@ -215,7 +215,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             #mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
-            #mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -232,7 +232,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
-            #mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -249,7 +249,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             #mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
-            #mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -266,7 +266,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
-            #mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -286,7 +286,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             #mpf.make_addplot(simulation_data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             #mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
-            #mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -303,7 +303,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             #mpf.make_addplot(simulation_data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
-            #mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -320,7 +320,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             #mpf.make_addplot(simulation_data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             #mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
-            #mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -337,7 +337,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             #mpf.make_addplot(simulation_data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
-            #mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
+            mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
             #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
@@ -369,8 +369,8 @@ def Buy_Sell_indicator_simulate(regress_history_days, id):
     indicator_SMA5 = ta.trend.SMAIndicator(df['Close'], window=5, fillna=False)
     indicator_SMA10 = ta.trend.SMAIndicator(df['Close'], window=10, fillna=False)
     indicator_SMA60 = ta.trend.SMAIndicator(df['Close'], window=60, fillna=False)
-    indicator_EMA = ta.trend.EMAIndicator(df['Close'], window=14, fillna=False)
-    indicator_WMA = ta.trend.WMAIndicator(df['Close'], window=14, fillna=False)
+    indicator_EMA = ta.trend.EMAIndicator(df['Close'], window=20, fillna=False)
+    indicator_WMA = ta.trend.WMAIndicator(df['Close'], window=20, fillna=False)
     indicator_BOLLINGER = ta.volatility.BollingerBands(df['Close'], window=55,window_dev=2,fillna=False)
     indicator_CCI = ta.trend.CCIIndicator(df['High'], df['Low'], df['Close'], window=144, constant=0.015, fillna=False)
     data = pd.DataFrame()
@@ -427,8 +427,17 @@ def Buy_Sell_indicator_simulate(regress_history_days, id):
     print("Match profit_rate Sell Opportunity", np.count_nonzero(~np.isnan(buy_sell[1])))
     print(data[data['Buy_signal_Price'].notnull()])
     print(data[data['Sell_Signal_price'].notnull()])
-    print('------------------------------------------------------------------------------------------------------')
-    draw_Buy_Sell_indicator_simulate(buy_sell,id)
+    print('======================================================================================================')
+    if np.count_nonzero(~np.isnan(cci['CCI'])) == 0:
+        print("CCI is empty, skip the plot")
+    elif np.count_nonzero(~np.isnan(macd['MACD'])) == 0 or np.count_nonzero(~np.isnan(macd['MACD_DIFF'])) == 0 or np.count_nonzero(~np.isnan(macd['MACD_SIGNAL'])) == 0:
+        print("MACD is empty, skip the plot")
+    elif np.count_nonzero(~np.isnan(aroon['ARRON_DOWN'])) == 0 or np.count_nonzero(~np.isnan(aroon['ARRON_UP'])) == 0 or np.count_nonzero(~np.isnan(aroon['ARRON'])) == 0:
+        print("AROON is empty, skip the plot")
+    elif np.count_nonzero(~np.isnan(rsi['RSI7'])) == 0 or np.count_nonzero(~np.isnan(rsi['RSI14'])) == 0 :
+        print("RSI is empty")
+    else:
+        draw_Buy_Sell_indicator_simulate(buy_sell,id)
 
 
 def Prediction_Simulate(simulate_history_days, id):
@@ -450,8 +459,8 @@ def Prediction_Simulate(simulate_history_days, id):
     indicator_SMA5 = ta.trend.SMAIndicator(df2['Close'], window=5, fillna=False)
     indicator_SMA10 = ta.trend.SMAIndicator(df2['Close'], window=10, fillna=False)
     indicator_SMA60 = ta.trend.SMAIndicator(df2['Close'], window=60, fillna=False)
-    indicator_EMA = ta.trend.EMAIndicator(df2['Close'], window=14, fillna=False)
-    indicator_WMA = ta.trend.WMAIndicator(df2['Close'], window=14, fillna=False)
+    indicator_EMA = ta.trend.EMAIndicator(df2['Close'], window=20, fillna=False)
+    indicator_WMA = ta.trend.WMAIndicator(df2['Close'], window=20, fillna=False)
     indicator_BOLLINGER = ta.volatility.BollingerBands(df2['Close'], window=55,window_dev=2,fillna=False)
     indicator_CCI = ta.trend.CCIIndicator(df2['High'], df2['Low'], df2['Close'], window=144, constant=0.015, fillna=False)
     simulation_data = pd.DataFrame()
@@ -499,7 +508,6 @@ def Prediction_Simulate(simulate_history_days, id):
     print(simulation_data[simulation_data['Sell_Signal_price'].notnull()])
     print('======================================================================================================')
     if np.count_nonzero(~np.isnan(cci['CCI'])) == 0:
-    
         print("CCI is empty, skip the plot")
     elif np.count_nonzero(~np.isnan(macd['MACD'])) == 0 or np.count_nonzero(~np.isnan(macd['MACD_DIFF'])) == 0 or np.count_nonzero(~np.isnan(macd['MACD_SIGNAL'])) == 0:
         print("MACD is empty, skip the plot")
