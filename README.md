@@ -5,20 +5,35 @@ CoinBase is sucks! I request to get all my data hope can track the IP.
 So Coinbase just give the following data. No "Source" No "IP_address". But all my legitimate transactions have "IP_address" and "Source" such as "Web/API"
 
 | 2021-01-22 21:00:01 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:00:02 UTC | user_send_money               |        |                 |
+
 | 2021-01-22 21:02:45 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:02:46 UTC | user_send_money               |        |                 |
+
 | 2021-01-22 21:08:34 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:08:35 UTC | user_send_money               |        |                 |
+
 | 2021-01-22 21:10:54 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:10:55 UTC | user_send_money               |        |                 |
+
 | 2021-01-22 21:11:03 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:11:04 UTC | user_send_money               |        |                 |
+
 | 2021-01-22 21:11:09 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:11:10 UTC | user_send_money               |        |                 |
+
 | 2021-01-22 21:19:33 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:19:35 UTC | user_send_money               |        |                 |
+
 | 2021-01-22 21:19:48 UTC | exchange_transfer             |        |                 |
+
 | 2021-01-22 21:19:49 UTC | user_send_money               |        |                 |
 
 I don't know how the thief can only call API and make the CoinBase didn't record anything, escape the tracing.
