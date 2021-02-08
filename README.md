@@ -1,3 +1,24 @@
+<b> Update Feb 08, 2021</b>
+0.1 BitCoin has been transfered to other address.
+
+https://live.blockcypher.com/btc/address/bc1qmr573hdhkf4eyhndmafpatnpjsn3sn99yrly5d/
+
+https://live.blockcypher.com/btc/address/3JB3MaHBgf9Ptcmy4sVg3uoUpH25xMLptr/
+
+https://live.blockcypher.com/btc/tx/06a4cbb7b07aeb7deca5cf14b1a703b5128fb512bdafc8a36e2615b4aa2a6aab/
+
+https://live.blockcypher.com/btc/address/bc1qat5ka0e5us9sr8jna3u8yvsjewvc07kx3hvstr/
+
+https://live.blockcypher.com/btc/tx/973fc0d9cc4a088c33c45852f34a8140d01b4a288b973c7b29b523c02a9b2dc2/
+
+But 0.042 BitCoin is still in the this address.
+
+https://live.blockcypher.com/btc/address/3DqPLvGxuGwLinicHMYmgiZETB4AcH4MoD/
+
+Still can track it. 
+
+<b>=========================================================================</b>
+
 <b> Update Jan 28, 2021</b>
 
 CoinBase is sucks! I request to get all my data hope can track the IP.
