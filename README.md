@@ -12,7 +12,7 @@ https://live.blockcypher.com/btc/address/bc1qat5ka0e5us9sr8jna3u8yvsjewvc07kx3hv
 
 https://live.blockcypher.com/btc/tx/973fc0d9cc4a088c33c45852f34a8140d01b4a288b973c7b29b523c02a9b2dc2/
 
-But 0.042 BitCoin is still in the this address.
+But 0.042 BitCoin is still in this address.
 
 https://live.blockcypher.com/btc/address/3DqPLvGxuGwLinicHMYmgiZETB4AcH4MoD/
 
