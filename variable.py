@@ -1,9 +1,12 @@
 #Initial Parameters
+import ctypes
 api_key = ''
 secret_key = ''
 passphrase = ''
-regress_history_days = 3
-regress_history_days_granularity = 900 #{60, 300, 900, 3600, 21600, 86400}
+screen_width = ctypes.windll.user32.GetSystemMetrics(0)
+screen_height = ctypes.windll.user32.GetSystemMetrics(1)
+regress_history_days = 300
+regress_history_days_granularity = 86400 #{60, 300, 900, 3600, 21600, 86400}
 simulate_history_days = 1
 simulate_history_days_granularity = 300 #{60, 300, 900, 3600, 21600, 86400}
 seconds_UTC2local = -25200
@@ -17,3 +20,5 @@ third_buy_percent = 0.30
 low_price_percent = 0.90
 exclude_currency = [] # "exclude_currency" and "include_currency" only one can have items or both empty
 include_currency = [] # "exclude_currency" and "include_currency" only one can have items or both empty
+output_data_file = 'output_data.txt'
+close_plot_second = 5

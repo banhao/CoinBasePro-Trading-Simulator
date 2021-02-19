@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
 # Author: banhao@gmail.com
-# Version: 1.2
-# Issue Date: Jan 21, 2021
-# Release Note: Fix CCI,MACD, AROON, RSI data empty cause plot error
+# Version: 1.3
+# Issue Date: Feb 18, 2021
+# Release Note: rearrange the plot windows, plot1 and plot2 can display on the same screen and use half of the screen. Add "close_plot_second" parameter, if "close_plot_second" = 0 plots will close immediately. if you want to close plot windows manually please uncomment the "input("Press [enter] to continue.")" 
 
 
 import json, hmac, hashlib, time, requests, base64, collections
@@ -72,7 +72,7 @@ def min_max_price(regress_history_days, id):
                            for i, row in enumerate(low_price_list))
         #print(id, len(regress_history_data_price.json()), "days lowest price", datetime.utcfromtimestamp(low_price_list[min_index][0]).isoformat(), min_value)
     min_max_list.append([id, len(regress_history_data_price.json()), datetime.utcfromtimestamp(high_price_list[max_index][0]).__format__('%Y-%m-%d %H:%M:%S'), max_value, datetime.utcfromtimestamp(low_price_list[min_index][0]).__format__('%Y-%m-%d %H:%M:%S'), min_value])
-    print(id," | ",len(regress_history_data_price.json())," | hightest price date:",datetime.utcfromtimestamp(high_price_list[max_index][0]).__format__('%Y-%m-%d %H:%M:%S')," | ", max_value," | lowest price date:", datetime.utcfromtimestamp(low_price_list[min_index][0]).__format__('%Y-%m-%d %H:%M:%S')," | ",min_value)
+    print('%12s' % id," | ", '%4s' % len(regress_history_data_price.json())," | hightest price date:",datetime.utcfromtimestamp(high_price_list[max_index][0]).__format__('%Y-%m-%d %H:%M:%S')," | ", '%12s' % max_value," | lowest price date:", datetime.utcfromtimestamp(low_price_list[min_index][0]).__format__('%Y-%m-%d %H:%M:%S')," | ", '%12s' % min_value)
 
 
 def plotdata_Max_Min(data):
@@ -216,7 +216,7 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
             mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             #mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
             mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
+            mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA20'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -226,14 +226,20 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
         ]
         ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
-        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(10,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        plt.pause(1)
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) != 0:
         TA_plot = [ mpf.make_addplot(data['Min_signal_Price'], type='scatter', markersize=100, marker=r'$\Uparrow$', color = 'blue'),
             mpf.make_addplot(data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
             mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
+            mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA20'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -243,14 +249,20 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
         ]
         ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
-        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(10,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        plt.pause(1)
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) == 0:
         TA_plot = [ mpf.make_addplot(data['Min_signal_Price'], type='scatter', markersize=100, marker=r'$\Uparrow$', color = 'blue'),
             mpf.make_addplot(data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             #mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
             mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
+            mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA20'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -260,14 +272,20 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
         ]
         ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
-        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(10,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        plt.pause(1)
     else:
         TA_plot = [ mpf.make_addplot(data['Min_signal_Price'], type='scatter', markersize=100, marker=r'$\Uparrow$', color = 'blue'),
             mpf.make_addplot(data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             mpf.make_addplot(data['Buy_signal_Price'], type='scatter', markersize=50, marker=r'$\bigtriangleup$', color = 'red'),
             mpf.make_addplot(data['Sell_Signal_price'], type='scatter', markersize=50, marker=r'$\bigtriangledown$', color = 'green'),
             mpf.make_addplot(data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA60'], color = 'Green'),
+            mpf.make_addplot(data['SMA5'], color = 'blue'),mpf.make_addplot(data['SMA10'], color = 'Orange'),mpf.make_addplot(data['SMA20'], color = 'Green'),
             mpf.make_addplot(data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -277,7 +295,13 @@ def draw_Buy_Sell_indicator_simulate(buy_sell,id):
         ]
         ymin = df.loc[df['Low'].idxmin()]['Low']*0.95
         ymax = df.loc[df['High'].idxmax()]['High']*1.05
-        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(10,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        plt.pause(1)
 
 
 def draw_Prediction_Simulate(buy_sell,id):
@@ -287,7 +311,7 @@ def draw_Prediction_Simulate(buy_sell,id):
             mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             #mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
             mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
+            mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA20'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -297,14 +321,25 @@ def draw_Prediction_Simulate(buy_sell,id):
         ]
         ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.95
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
-        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(int((screen_width-30)/2)+20,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        if close_plot_second == 0:
+            plt.close('all')
+        else:
+            plt.pause(close_plot_second)
+            plt.close('all')
+            #input("Press [enter] to continue.")
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) != 0:
         TA_plot = [ #mpf.make_addplot(simulation_data['Min_signal_Price'], type='scatter', markersize=100, marker=r'$\Uparrow$', color = 'blue'),
             #mpf.make_addplot(simulation_data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
             mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
+            mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA20'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -314,14 +349,25 @@ def draw_Prediction_Simulate(buy_sell,id):
         ]
         ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.95
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
-        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(int((screen_width-30)/2)+20,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        if close_plot_second == 0:
+            plt.close('all')
+        else:
+            plt.pause(close_plot_second)
+            plt.close('all')
+            #input("Press [enter] to continue.")
     elif np.count_nonzero(~np.isnan(buy_sell[0])) == 0 and np.count_nonzero(~np.isnan(buy_sell[1])) == 0:
         TA_plot = [ #mpf.make_addplot(simulation_data['Min_signal_Price'], type='scatter', markersize=100, marker=r'$\Uparrow$', color = 'blue'),
             #mpf.make_addplot(simulation_data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             #mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             #mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
             mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
+            mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA20'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -331,14 +377,25 @@ def draw_Prediction_Simulate(buy_sell,id):
         ]
         ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.95
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
-        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(int((screen_width-30)/2)+20,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        if close_plot_second == 0:
+            plt.close('all')
+        else:
+            plt.pause(close_plot_second)
+            plt.close('all')
+            #input("Press [enter] to continue.")
     else:
         TA_plot = [ #mpf.make_addplot(simulation_data['Min_signal_Price'], type='scatter', markersize=100, marker=r'$\Uparrow$', color = 'blue'),
             #mpf.make_addplot(simulation_data['Max_Signal_price'], type='scatter', markersize=100, marker=r'$\Downarrow$', color = 'blue'),
             mpf.make_addplot(simulation_data['Buy_signal_Price'], type='scatter', markersize=150, marker=r'$\Uparrow$', color = 'Red'),
             mpf.make_addplot(simulation_data['Sell_Signal_price'], type='scatter', markersize=150, marker=r'$\Downarrow$', color = 'Green'),
             mpf.make_addplot(simulation_data['EMA'], color = 'orange', linestyle ='dotted'), #mpf.make_addplot(simulation_data['WMA'], color = 'purple', linestyle ='dotted'),
-            #mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA60'], color = 'Green'),
+            mpf.make_addplot(simulation_data['SMA5'], color = 'blue'),mpf.make_addplot(simulation_data['SMA10'], color = 'Orange'),mpf.make_addplot(simulation_data['SMA20'], color = 'Green'),
             mpf.make_addplot(simulation_data['BOLLINGER_HBAND'], color = 'green', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_LBAND'], color = 'red', linestyle ='-.'),mpf.make_addplot(simulation_data['BOLLINGER_MAVG'], color = 'Fuchsia'),
             mpf.make_addplot(cci, panel=2, ylabel='CCI'),
             mpf.make_addplot(macd['MACD_DIFF'], type='bar', panel=3, ylabel='MACD', alpha=1,secondary_y=False),
@@ -348,7 +405,18 @@ def draw_Prediction_Simulate(buy_sell,id):
         ]
         ymin = df2.loc[df2['Low'].idxmin()]['Low']*0.90
         ymax = df2.loc[df2['High'].idxmax()]['High']*1.05
-        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1))
+        mpf.plot( df2, type='candle', style='yahoo', addplot=TA_plot, title=id, figscale=1.0, volume=True, ylim=(ymin,ymax), panel_ratios=(4,1),returnfig=True)
+        fm = plt.get_current_fig_manager()
+        fm.window.setGeometry(int((screen_width-30)/2)+20,30,int((screen_width-30)/2),int(screen_height/2))
+        plt.ion()
+        plt.show()
+        plt.draw()
+        if close_plot_second == 0:
+            plt.close('all')
+        else:
+            plt.pause(close_plot_second)
+            plt.close('all')
+            #input("Press [enter] to continue.")
 
 
 def Buy_Sell_indicator_simulate(regress_history_days, id):
@@ -368,10 +436,10 @@ def Buy_Sell_indicator_simulate(regress_history_days, id):
     indicator_AROON = ta.trend.AroonIndicator(df['Close'], window=14, fillna=False)
     indicator_SMA5 = ta.trend.SMAIndicator(df['Close'], window=5, fillna=False)
     indicator_SMA10 = ta.trend.SMAIndicator(df['Close'], window=10, fillna=False)
-    indicator_SMA60 = ta.trend.SMAIndicator(df['Close'], window=60, fillna=False)
+    indicator_SMA20 = ta.trend.SMAIndicator(df['Close'], window=20, fillna=False)
     indicator_EMA = ta.trend.EMAIndicator(df['Close'], window=20, fillna=False)
     indicator_WMA = ta.trend.WMAIndicator(df['Close'], window=20, fillna=False)
-    indicator_BOLLINGER = ta.volatility.BollingerBands(df['Close'], window=55,window_dev=2,fillna=False)
+    indicator_BOLLINGER = ta.volatility.BollingerBands(df['Close'], window=60,window_dev=2,fillna=False)
     indicator_CCI = ta.trend.CCIIndicator(df['High'], df['Low'], df['Close'], window=144, constant=0.015, fillna=False)
     data = pd.DataFrame()
     data = df
@@ -385,7 +453,7 @@ def Buy_Sell_indicator_simulate(regress_history_days, id):
     data['ARRON'] = indicator_AROON.aroon_indicator()
     data['SMA5'] = indicator_SMA5.sma_indicator()
     data['SMA10'] = indicator_SMA10.sma_indicator()
-    data['SMA60'] = indicator_SMA60.sma_indicator()
+    data['SMA20'] = indicator_SMA20.sma_indicator()
     data['EMA'] = indicator_EMA.ema_indicator()
     data['WMA'] = indicator_WMA.wma()
     data['BOLLINGER_HBAND'] = indicator_BOLLINGER.bollinger_hband()
@@ -412,6 +480,7 @@ def Buy_Sell_indicator_simulate(regress_history_days, id):
     pd.set_option('display.max_rows', 500)
     pd.set_option('display.max_columns', 500)
     pd.set_option('display.width', 150)
+    new_content = []
     print('------------------------------------------------------------------------------------------------------')
     print(id)
     print(data.loc[ [min_max_list[i][2]],['High','MACD','MACD_DIFF','MACD_SIGNAL','RSI7','RSI14','ARRON_DOWN','ARRON_UP','ARRON','BOLLINGER_HBAND','BOLLINGER_HBAND_INDICATOR','BOLLINGER_LBAND','BOLLINGER_LBAND_INDICATOR','BOLLINGER_MAVG','BOLLINGER_PBAND','BOLLINGER_WBAND'] ])
@@ -427,6 +496,25 @@ def Buy_Sell_indicator_simulate(regress_history_days, id):
     print("Match profit_rate Sell Opportunity", np.count_nonzero(~np.isnan(buy_sell[1])))
     print(data[data['Buy_signal_Price'].notnull()])
     print(data[data['Sell_Signal_price'].notnull()])
+    with open(output_data_file, 'r') as in_file:
+        for line in in_file.readlines():
+            new_content += line
+    new_content += "{}".format(id)
+    new_content += "\n"
+    new_content += "{}".format(data.loc[ [min_max_list[i][2]],['High','MACD','MACD_DIFF','MACD_SIGNAL','RSI7','RSI14','ARRON_DOWN','ARRON_UP','ARRON','BOLLINGER_HBAND','BOLLINGER_HBAND_INDICATOR','BOLLINGER_LBAND','BOLLINGER_LBAND_INDICATOR','BOLLINGER_MAVG','BOLLINGER_PBAND','BOLLINGER_WBAND'] ])
+    new_content += "\n"
+    new_content += "{}".format(data.loc[ [min_max_list[i][4]],['Low' ,'MACD','MACD_DIFF','MACD_SIGNAL','RSI7','RSI14','ARRON_DOWN','ARRON_UP','ARRON','BOLLINGER_HBAND','BOLLINGER_HBAND_INDICATOR','BOLLINGER_LBAND','BOLLINGER_LBAND_INDICATOR','BOLLINGER_MAVG','BOLLINGER_PBAND','BOLLINGER_WBAND'] ])
+    new_content += "\n"
+    new_content += "{}".format(data[data['Buy_signal_Price'].notnull()])
+    new_content += "\n"
+    new_content += "{}".format(data[data['Sell_Signal_price'].notnull()])
+    new_content += "\n"
+    new_content += "{}".format("------------------------------------------------------------------------------------------------------")
+    new_content += "\n"
+    with open(output_data_file, 'w') as out_file:
+        out_file.writelines(new_content)
+    in_file.close()
+    out_file.close()
     print('======================================================================================================')
     if np.count_nonzero(~np.isnan(cci['CCI'])) == 0:
         print("CCI is empty, skip the plot")
@@ -458,10 +546,10 @@ def Prediction_Simulate(simulate_history_days, id):
     indicator_AROON = ta.trend.AroonIndicator(df2['Close'], window=14, fillna=False)
     indicator_SMA5 = ta.trend.SMAIndicator(df2['Close'], window=5, fillna=False)
     indicator_SMA10 = ta.trend.SMAIndicator(df2['Close'], window=10, fillna=False)
-    indicator_SMA60 = ta.trend.SMAIndicator(df2['Close'], window=60, fillna=False)
+    indicator_SMA20 = ta.trend.SMAIndicator(df2['Close'], window=20, fillna=False)
     indicator_EMA = ta.trend.EMAIndicator(df2['Close'], window=20, fillna=False)
     indicator_WMA = ta.trend.WMAIndicator(df2['Close'], window=20, fillna=False)
-    indicator_BOLLINGER = ta.volatility.BollingerBands(df2['Close'], window=55,window_dev=2,fillna=False)
+    indicator_BOLLINGER = ta.volatility.BollingerBands(df2['Close'], window=60,window_dev=2,fillna=False)
     indicator_CCI = ta.trend.CCIIndicator(df2['High'], df2['Low'], df2['Close'], window=144, constant=0.015, fillna=False)
     simulation_data = pd.DataFrame()
     simulation_data = df2
@@ -475,7 +563,7 @@ def Prediction_Simulate(simulate_history_days, id):
     simulation_data['ARRON'] = indicator_AROON.aroon_indicator()
     simulation_data['SMA5'] = indicator_SMA5.sma_indicator()
     simulation_data['SMA10'] = indicator_SMA10.sma_indicator()
-    simulation_data['SMA60'] = indicator_SMA60.sma_indicator()
+    simulation_data['SMA20'] = indicator_SMA20.sma_indicator()
     simulation_data['EMA'] = indicator_EMA.ema_indicator()
     simulation_data['WMA'] = indicator_WMA.wma()
     simulation_data['BOLLINGER_HBAND'] = indicator_BOLLINGER.bollinger_hband()
@@ -533,12 +621,11 @@ print('-------------------------------------------------------------------------
 ##### min_max_list formart [id, history records number, max price date, max price, min price date, min price] #####
 min_max_list = []
 for item in coinbase_products.json():
-    if (item['id'].endswith("-BTC")) and (item['status_message'] == ""):
-        min_max_price(regress_history_days,item['id'])
-for item in coinbase_products.json():
     if (item['id'].endswith("-USDC")) and (item['status_message'] == ""):
         min_max_price(regress_history_days,item['id'])
-
+for item in coinbase_products.json():
+    if (item['id'].endswith("-BTC")) and (item['status_message'] == ""):
+        min_max_price(regress_history_days,item['id'])
 for i in range(len(min_max_list)):
     if min_max_list[i][1] >= regress_history_days and min_max_list[i][1] > 14:
         start_datetime = datetime.utcfromtimestamp(current_datetime.json()['epoch']-86400*regress_history_days).__format__('%Y-%m-%d %H:%M:%S')
