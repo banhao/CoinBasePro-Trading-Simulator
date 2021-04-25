@@ -136,6 +136,8 @@ My sell condition is if the candle is higher than 'BOLLINGER_HBAND' and 'CCI' is
 
 variable.py is used to load paraments/variables and I also remained some paraments/variables for automatice trading tools to share one variable file (Automatic trading tool is still in testing)
 
+## variable.py
+------
 ```
 
 #Initial Parameters
