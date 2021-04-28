@@ -178,6 +178,6 @@ If you have any idea want to add in the tools you can send me an email and let m
 </b>
 
 ## Support the Project
-If this program helped you to earn money from cryptocurrency market, wish you can use the following link to buy me a cup of coffee, Thanks! 
+If this program helped you to earn money from cryptocurrency market, I'll be appreciate if you can use the following link to buy me a cup of coffee, Thanks! 
 
 [PayPal.Me](https://paypal.me/HAOBAN99?locale.x=en_US)
