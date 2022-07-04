@@ -2,7 +2,7 @@
 # **CoinBase is very very very sucks! Don't use their service, because you will never get any reply from a people, and they will never resolve your issue.**
 =========================================================================
 
-I'm developing a new program which will work on Binance.
+The new Binance Bot is here: https://github.com/banhao/banhao
 
 <!--
 # CryptoCurrency Trading Simulator
