@@ -1,8 +1,7 @@
 # **WARNING! This software will not be maintained any more. So please be very careful if you want to use it on CoinBase or CoinBase Pro.**
-# **CoinBase is very very very sucks! Don't use their service, because you will never get any reply from a people, and they will never resolve your issue.**
 =========================================================================
 
-The new Binance Bot is here: https://github.com/banhao/banhao
+The new Binance Bot is here: https://twitter.com/CC_Tradingchart
 
 <!--
 # CryptoCurrency Trading Simulator
