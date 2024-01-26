@@ -1,8 +1,5 @@
 # **WARNING! This software will not be maintained any more. So please be very careful if you want to use it on CoinBase or CoinBase Pro.**
 =========================================================================
-
-The new Binance Bot is here: https://twitter.com/CC_Tradingchart
-
 <!--
 # CryptoCurrency Trading Simulator
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
